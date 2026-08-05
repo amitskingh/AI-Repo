@@ -1,0 +1,53 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Virtual environments and package/build output
+.venv/
+venv/
+env/
+ENV/
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+
+# LangChain and local AI app artifacts
+.langchain/
+.langsmith/
+langchain.db
+langchain.sqlite
+*.faiss
+*.index
+chroma/
+chromadb/
+.chroma/
+vectorstore/
+vectorstores/
+storage/
+
+# Jupyter and notebooks
+.ipynb_checkpoints/
+
+# Editor and OS noise
+.codex/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
