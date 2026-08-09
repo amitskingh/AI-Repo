@@ -26,6 +26,7 @@ LangChain code often looks like magic until you know the underlying Python:
 ```python
 from langchain_core.tools import tool
 
+
 @tool
 def calculator(a: int, b: int) -> int:
     return a + b

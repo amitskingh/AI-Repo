@@ -43,8 +43,8 @@ A `for` loop calls `next()` until `StopIteration`.
 ## Generator expressions
 
 ```python
-numbers = [x * 2 for x in range(5)]   # list — all values now
-numbers = (x * 2 for x in range(5))   # generator — lazy
+numbers = [x * 2 for x in range(5)]  # list — all values now
+numbers = (x * 2 for x in range(5))  # generator — lazy
 ```
 
 ## Common mistakes
@@ -56,7 +56,7 @@ numbers = (x * 2 for x in range(5))   # generator — lazy
 ## AI / LangChain connection
 
 ```python
-model.stream(...)   # tokens one by one (like a generator)
+model.stream(...)  # tokens one by one (like a generator)
 model.astream(...)  # async version of the same idea
 ```
 

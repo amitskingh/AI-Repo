@@ -27,6 +27,7 @@ class ChatBot:
     def reply(self, question: str) -> str:
         return f"{self.model_name} received: {question}"
 
+
 bot = ChatBot("GPT-4")
 print(bot.reply("Explain decorators."))
 # GPT-4 received: Explain decorators.
@@ -72,6 +73,7 @@ class ChatBot:
 # Wrong — one list for every instance
 class ChatBot:
     history = []
+
 
 # Correct
 class ChatBot:

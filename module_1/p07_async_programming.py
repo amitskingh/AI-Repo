@@ -1,5 +1,5 @@
-import time
 import asyncio
+import time
 
 
 def make_coffe():
@@ -33,7 +33,6 @@ async def main():
         task("Database", 1),
         task("Vector DB", 1),
     )
-
 
 
 if __name__ == "__main__":

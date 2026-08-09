@@ -24,8 +24,7 @@ Most of that wall-clock time is idle. Async asks: *can I make progress on someth
 ## Coroutines and `await`
 
 ```python
-async def greet():
-    ...
+async def greet(): ...
 ```
 
 Calling `greet()` returns a **coroutine object**—nothing runs yet. Execution starts when you `await` it (or schedule it on the event loop).
@@ -34,7 +33,7 @@ Calling `greet()` returns a **coroutine object**—nothing runs yet. Execution s
 
 ```python
 await asyncio.sleep(2)  # pause this coroutine; loop keeps working
-time.sleep(2)           # blocks the entire thread / event loop
+time.sleep(2)  # blocks the entire thread / event loop
 ```
 
 ## Event loop

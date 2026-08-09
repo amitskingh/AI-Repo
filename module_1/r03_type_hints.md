@@ -10,6 +10,7 @@ LangChain, FastAPI, and Pydantic all rely heavily on type hints.
 def process(data):  # what is data?
     ...
 
+
 def process(data: str) -> str:  # input and output are clear
     ...
 ```
@@ -21,6 +22,7 @@ Hints improve readability, tooling, and communication. They are **metadata**—P
 ```python
 def greet(name: str) -> str:
     return f"Hello {name}"
+
 
 greet.__annotations__
 # {"name": str, "return": str}
@@ -34,10 +36,11 @@ Frameworks read `__annotations__`. That is how FastAPI builds docs, Pydantic val
 def greet(name: str) -> str:
     return f"Hello {name}"
 
+
 age: int = 25
 scores: list[int]
 prices: dict[str, float]
-nickname: str | None          # prefer over Optional[str] on 3.10+
+nickname: str | None  # prefer over Optional[str] on 3.10+
 value: int | float
 operation: Callable[[int, int], int]  # from collections.abc
 ```
@@ -68,8 +71,7 @@ Tools like mypy, pyright, and Pylance will warn. Frameworks that *do* validate (
 
 ```python
 @tool
-def search(query: str, limit: int) -> str:
-    ...
+def search(query: str, limit: int) -> str: ...
 ```
 
 LangChain reads the annotations into a tool schema the LLM can call. Weak hints → weak schemas.

@@ -16,10 +16,13 @@ def logger(function):
         print("Function started")
         function()
         print("Function finished")
+
     return wrapper
+
 
 def greet():
     print("Hello!")
+
 
 greet = logger(greet)
 greet()
@@ -43,6 +46,7 @@ Real decorators must accept any signature and preserve metadata:
 ```python
 from functools import wraps
 
+
 def logger(function):
     @wraps(function)
     def wrapper(*args, **kwargs):
@@ -50,6 +54,7 @@ def logger(function):
         result = function(*args, **kwargs)
         print("Finished")
         return result
+
     return wrapper
 ```
 
@@ -63,9 +68,10 @@ When the decorator itself needs parameters (`@retry(3)`), you nest three levels:
 def retry(max_attempts):
     def decorator(function):
         @wraps(function)
-        def wrapper(*args, **kwargs):
-            ...
+        def wrapper(*args, **kwargs): ...
+
         return wrapper
+
     return decorator
 ```
 
@@ -85,6 +91,7 @@ Python expands `@retry(3)` to `fetch_data = retry(3)(fetch_data)`:
 
 ```python
 from langchain_core.tools import tool
+
 
 @tool
 def calculator(a: int, b: int) -> int:

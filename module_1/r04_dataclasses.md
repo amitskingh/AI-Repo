@@ -19,6 +19,7 @@ Add `__repr__`, `__eq__`, hashing, ordering, immutability—and every data model
 ```python
 from dataclasses import dataclass
 
+
 @dataclass
 class User:
     name: str
@@ -48,6 +49,7 @@ Mutable defaults are evaluated once at class definition. Use:
 ```python
 from dataclasses import field
 
+
 @dataclass
 class ChatSession:
     history: list[str] = field(default_factory=list)
@@ -76,8 +78,7 @@ Structured results (documents, messages, tool outputs, config) are often datacla
 
 ```python
 @tool
-def search(query: str) -> SearchResult:
-    ...
+def search(query: str) -> SearchResult: ...
 ```
 
 ## Interview questions

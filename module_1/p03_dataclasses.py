@@ -14,7 +14,7 @@ Here every objects shares the same list object in memory, which can lead to unex
 
 @dataclass
 class ChatSessionSharedHistory:
-    history: list[str] = []
+    history: list[str] = []  # noqa
 
 
 """

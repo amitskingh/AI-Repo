@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Message:
     role: str
@@ -38,7 +39,7 @@ class ChatBot:
             content=prompt,
         )
 
-        reply = f"I am {self.name}, using {self.model_name}. " f"You asked: {prompt}"
+        reply = f"I am {self.name}, using {self.model_name}. You asked: {prompt}"
 
         self.add_message(
             role="assistant",

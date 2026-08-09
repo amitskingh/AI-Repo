@@ -7,7 +7,6 @@ def read_lines():
     yield "Line 3"
 
 
-
 if __name__ == "__main__":
     for line in read_lines():
         print(line)

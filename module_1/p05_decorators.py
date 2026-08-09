@@ -54,7 +54,7 @@ def retry(max_attempts: int):
             for attempt in range(1, max_attempts + 1):
                 try:
                     return function(*args, **kwargs)
-                except Exception as error:
+                except Exception as error:  # noqa
                     last_error = error
                     print(f"Attempt {attempt} failed")
 
@@ -105,5 +105,6 @@ if __name__ == "__main__":
     try:
         data = example_1()
         print(f"Total price: {data}")
-    except Exception as e:
+    except RuntimeError as e:
+        # Retry decorator raises RuntimeError if the function did not execute
         print(f"Function failed after retries: {e}")

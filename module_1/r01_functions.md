@@ -32,6 +32,7 @@ def calculate_total(price: float, quantity: int) -> float:
 def greet(name: str) -> str:
     return f"Hello, {name}"
 
+
 message = greet("Harvey")
 print(message)  # Hello, Harvey
 ```
@@ -41,8 +42,7 @@ Returning keeps the function reusable: print it, save it, send it to an API, or 
 ## Functions are objects
 
 ```python
-def greet():
-    ...
+def greet(): ...
 ```
 
 creates a function object stored in memory. `greet` refers to the object; `greet()` executes it. That distinction matters for decorators.
@@ -58,6 +58,7 @@ creates a function object stored in memory. `greet` refers to the object; `greet
 # Good
 def calculate_total(price: float, quantity: int) -> float:
     return price * quantity
+
 
 # Bad — unclear names, no types
 def calc(x, y):
