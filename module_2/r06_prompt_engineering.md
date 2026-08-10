@@ -1,27 +1,6 @@
-Absolutely. Since **Module 1.6 had Part 1 and Part 2**, `R06_Prompt_Engineering.md` should contain the **combined lesson**, not two separate files.
+# 6 – Prompt Engineering
 
-````markdown
-# R06 – Prompt Engineering
-
-> **Lesson Goal:** Understand how to design clear, reliable instructions for LLMs and how prompting techniques affect model behavior.
-
----
-
-# Learning Objectives
-
-After completing this lesson, I should be able to:
-
-- Explain what a prompt is.
-- Understand the anatomy of a good prompt.
-- Differentiate Zero-shot, One-shot, and Few-shot prompting.
-- Understand Prompt Templates.
-- Explain Prompt Injection.
-- Apply prompt engineering best practices.
-- Understand how prompting fits into production AI systems.
-
----
-
-# 1. What is Prompt Engineering?
+## What is Prompt Engineering?
 
 Prompt Engineering is the process of designing instructions that guide an LLM toward the desired output.
 
@@ -41,13 +20,11 @@ Current User Input
 Tool Results
        ↓
 LLM
-````
+```
 
 The goal is to provide the model with the right **instructions, context, constraints, and output expectations**.
 
----
-
-# 2. Why Does Prompt Engineering Matter?
+## Why Does Prompt Engineering Matter?
 
 Compare:
 
@@ -75,9 +52,7 @@ Keep the explanation under 500 words.
 
 The second prompt gives the model much less room to guess.
 
----
-
-# 3. Anatomy of a Good Prompt
+## Anatomy of a Good Prompt
 
 A useful mental model is:
 
@@ -93,7 +68,7 @@ Constraints
 Output Format
 ```
 
-## Role
+### Role
 
 Tell the model what role it should perform.
 
@@ -101,7 +76,7 @@ Tell the model what role it should perform.
 You are an experienced Python developer.
 ```
 
-## Task
+### Task
 
 Clearly state what it should do.
 
@@ -109,7 +84,7 @@ Clearly state what it should do.
 Explain Python decorators.
 ```
 
-## Context
+### Context
 
 Provide information necessary to perform the task.
 
@@ -118,7 +93,7 @@ The audience understands Python
 but is new to LangChain.
 ```
 
-## Constraints
+### Constraints
 
 Specify boundaries when necessary.
 
@@ -126,7 +101,7 @@ Specify boundaries when necessary.
 Keep the answer under 500 words.
 ```
 
-## Output Format
+### Output Format
 
 Tell the model how the result should be structured.
 
@@ -139,11 +114,9 @@ Return:
 4. Best practices
 ```
 
----
+## Bad vs Good Prompt
 
-# 4. Bad vs Good Prompt
-
-## Bad
+### Bad
 
 ```text
 Review this resume.
@@ -157,9 +130,7 @@ The model has to guess:
 * What format should it return?
 * How detailed should it be?
 
----
-
-## Better
+### Better
 
 ```text
 You are a senior technical recruiter.
@@ -180,9 +151,7 @@ Return:
 - Recommendations
 ```
 
----
-
-# 5. Zero-shot Prompting
+## Zero-shot Prompting
 
 Zero-shot means:
 
@@ -206,7 +175,7 @@ LLM
 Output
 ```
 
-### Good For
+#### Good For
 
 * General questions
 * Translation
@@ -214,9 +183,7 @@ Output
 * Classification
 * Straightforward tasks
 
----
-
-# 6. One-shot Prompting
+## One-shot Prompting
 
 One-shot means:
 
@@ -247,15 +214,13 @@ LLM
 Output
 ```
 
-### Good For
+#### Good For
 
 * Output formatting
 * Simple transformations
 * Establishing a specific response style
 
----
-
-# 7. Few-shot Prompting
+## Few-shot Prompting
 
 Few-shot means:
 
@@ -289,9 +254,7 @@ LLM
 Output
 ```
 
----
-
-# Zero-shot vs One-shot vs Few-shot
+## Zero-shot vs One-shot vs Few-shot
 
 | Technique | Examples | Main Purpose              |
 | --------- | -------: | ------------------------- |
@@ -299,9 +262,7 @@ Output
 | One-shot  |        1 | Demonstrate pattern       |
 | Few-shot  | Multiple | Stronger pattern guidance |
 
----
-
-# 8. Prompt Templates
+## Prompt Templates
 
 Hardcoding prompts is inconvenient.
 
@@ -337,9 +298,7 @@ name = "Alice"
 name = "David"
 ```
 
----
-
-# 9. Prompt Templates in LangChain
+## Prompt Templates in LangChain
 
 LangChain provides structured prompt templates.
 
@@ -370,9 +329,7 @@ prompt.invoke({"question": "What is a generator?"})
 
 The structure remains the same while the input changes.
 
----
-
-# 10. Why Prompt Templates Matter
+## Why Prompt Templates Matter
 
 Without templates:
 
@@ -404,9 +361,7 @@ Benefits:
 * Easier testing
 * Easier versioning
 
----
-
-# 11. Prompt Injection
+## Prompt Injection
 
 Prompt Injection occurs when untrusted input attempts to manipulate the instructions given to an LLM.
 
@@ -430,9 +385,7 @@ The user is attempting to override the application's instructions.
 
 This is a **Prompt Injection** attack.
 
----
-
-# Why Prompt Injection Matters
+## Why Prompt Injection Matters
 
 It becomes especially important when an LLM has access to:
 
@@ -455,9 +408,7 @@ LLM + Tools
 Higher Security Requirements
 ```
 
----
-
-# 12. Prompt Injection Protection
+## Prompt Injection Protection
 
 There is no single magic defense.
 
@@ -489,10 +440,7 @@ Important principles:
 
 We will study this more deeply when we reach **Tools and Agents**.
 
----
-
-# 13. Prompt Engineering ≠ Magic Words
-
+## Prompt engineering is not magic
 Prompt engineering is not about discovering secret phrases.
 
 It is primarily about:
@@ -505,11 +453,9 @@ It is primarily about:
 
 A longer prompt is not automatically a better prompt.
 
----
+## Best Practices
 
-# 14. Best Practices
-
-## 1. Be Clear
+### Be Clear
 
 ❌
 
@@ -523,15 +469,11 @@ Analyze this.
 Analyze this document for compliance risks.
 ```
 
----
-
-## 2. Give Relevant Context
+### Give Relevant Context
 
 Tell the model information it needs to perform the task.
 
----
-
-## 3. Specify Output Format
+### Specify Output Format
 
 For example:
 
@@ -543,23 +485,17 @@ Return:
 - Recommendations
 ```
 
----
-
-## 4. Use Examples When Useful
+### Use Examples When Useful
 
 If the desired output is difficult to describe, examples can demonstrate it more effectively.
 
----
-
-## 5. Keep Instructions Focused
+### Keep Instructions Focused
 
 Don't add unnecessary information.
 
 More tokens do not automatically mean better results.
 
----
-
-## 6. Separate Instructions From Data
+### Separate Instructions From Data
 
 For example:
 
@@ -573,9 +509,7 @@ Document:
 
 This makes the intended structure clearer and can help reduce confusion.
 
----
-
-## 7. Test Prompts
+### Test Prompts
 
 Treat prompts like code.
 
@@ -587,9 +521,7 @@ Test them against:
 * Malicious inputs
 * Long inputs
 
----
-
-# 15. Production Example – HOA AI
+## Production Example – HOA AI
 
 A weak prompt:
 
@@ -624,9 +556,7 @@ in the document.
 
 This is much closer to a production prompt.
 
----
-
-# 16. Important Connection: Prompt vs Context
+## Prompt vs context
 
 Remember our previous lesson.
 
@@ -656,129 +586,14 @@ Better Input to LLM
 
 Prompt engineering and RAG eventually work together.
 
----
+## Interview questions
 
-# 17. Mentor Discussions
+- What is Prompt Engineering?
+- What is the difference between Zero-shot and Few-shot?
+- What is Prompt Injection?
+- Why are Prompt Templates useful?
 
-## Q: Is the prompt only the user's message?
-
-**No.**
-
-The model may receive system instructions, history, retrieved documents, tool results, and the current user message.
-
----
-
-## Q: Is a longer prompt always better?
-
-**No.**
-
-The goal is relevant information and clear instructions.
-
-Unnecessary information consumes tokens and can make the model's job harder.
-
----
-
-## Q: Should I always use Few-shot prompting?
-
-**No.**
-
-Start with Zero-shot.
-
-If the model doesn't reliably follow the desired pattern, consider One-shot or Few-shot examples.
-
----
-
-## Q: Is Prompt Injection only a prompt problem?
-
-**No.**
-
-It is an application security problem.
-
-Especially when the model has access to tools or sensitive information.
-
----
-
-# 18. Key Takeaways
-
-* Prompt Engineering means designing effective instructions for an LLM.
-* A prompt can contain much more than the user's message.
-* Good prompts clearly define the task and relevant context.
-* Zero-shot uses no examples.
-* One-shot uses one example.
-* Few-shot uses multiple examples.
-* Prompt Templates make prompts reusable.
-* Prompt Injection attempts to manipulate model instructions.
-* Security should never rely solely on the LLM.
-* Prompts should be tested like code.
-
----
-
-# New Terminology
-
-| Term               | Meaning                                |
-| ------------------ | -------------------------------------- |
-| Prompt             | Input/instructions provided to an LLM  |
-| Prompt Engineering | Designing effective LLM instructions   |
-| Zero-shot          | Task without examples                  |
-| One-shot           | Task with one example                  |
-| Few-shot           | Task with multiple examples            |
-| Prompt Template    | Reusable prompt with variables         |
-| Prompt Injection   | Attempt to manipulate LLM instructions |
-| Constraint         | A rule limiting the desired output     |
-
----
-
-# Interview Nuggets
-
-### Q: What is Prompt Engineering?
-
-**Answer:**
-
-Prompt Engineering is the practice of designing clear instructions, context, constraints, and examples to guide an LLM toward a desired output.
-
----
-
-### Q: What is the difference between Zero-shot and Few-shot?
-
-**Answer:**
-
-Zero-shot provides no examples, while Few-shot provides multiple examples to demonstrate the desired behavior or pattern.
-
----
-
-### Q: What is Prompt Injection?
-
-**Answer:**
-
-Prompt Injection is an attack where untrusted input attempts to manipulate or override the instructions provided to an LLM.
-
----
-
-### Q: Why are Prompt Templates useful?
-
-**Answer:**
-
-They separate reusable prompt structure from dynamic input, improving consistency, maintainability, and testing.
-
----
-
-# Connections
-
-Previous:
-
-* R01 – What is an LLM?
-* R02 – Tokens
-* R03 – Context Window
-* R04 – Temperature
-* R05 – Top-p
-
-Next:
-
-* R07 – Embeddings
-
----
-
-# Summary
+## Summary
 
 Prompt Engineering is about designing the input given to an LLM so that the model has clear instructions, relevant context, appropriate constraints, and a well-defined output format.
 
@@ -787,12 +602,3 @@ Zero-shot, One-shot, and Few-shot prompting provide different levels of examples
 The most important principle is:
 
 > **Give the model the right instructions and the right context, but never rely on the model alone for security or authorization.**
-
-```
-
-### One important correction from our earlier lessons
-
-As we continue, I'll be more careful with statements like **"temperature = 0 means deterministic"**. In practice, `temperature=0` generally makes output much more predictable, but it does **not universally guarantee identical output across every provider/model/configuration**.
-
-That's the level of precision I want in your notes going forward—simple enough to learn, but accurate enough for production and interviews.
-```

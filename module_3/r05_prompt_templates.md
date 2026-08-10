@@ -1,33 +1,6 @@
-Absolutely 😄. And yes, for this lesson I've made the **Memory vs Prompt Template distinction explicit throughout**, because that's exactly the kind of confusion worth preventing early.
+# 5 – Prompt Templates & Basic Chains
 
-````markdown
-# R05 – Prompt Templates & Basic Chains
-
-> **Module:** 2 – LangChain Fundamentals  
-> **Lesson:** 2.5 – Prompt Templates
-
----
-
-# Learning Objectives
-
-After completing this lesson, I should be able to:
-
-- Explain what a Prompt Template is.
-- Understand the difference between a Prompt Template and a final prompt.
-- Understand template variables such as `{topic}`.
-- Understand `PromptTemplate`.
-- Understand `ChatPromptTemplate`.
-- Understand why `ChatPromptTemplate` is useful with Chat Models.
-- Understand that Prompt Templates are not memory.
-- Understand that ChatPromptTemplate does not automatically remember conversation history.
-- Understand the `|` composition operator.
-- Build a basic LangChain chain.
-- Understand the relationship between Prompt, Chat Model, and AIMessage.
-- Understand the basic idea behind LCEL/Runnable composition.
-
----
-
-# 1. The Problem With Hardcoded Prompts
+## The Problem With Hardcoded Prompts
 
 A simple LangChain call can look like:
 
@@ -35,7 +8,7 @@ A simple LangChain call can look like:
 response = model.invoke(
     "Explain Python decorators."
 )
-````
+```
 
 This works, but it is not reusable.
 
@@ -64,9 +37,7 @@ topic
 
 when we execute the prompt.
 
----
-
-# 2. What Is a Prompt Template?
+## What Is a Prompt Template?
 
 A Prompt Template is a reusable structure for constructing a prompt.
 
@@ -106,13 +77,11 @@ Input Variables
 Final Prompt
 ```
 
----
-
-# 3. Prompt Template vs Final Prompt
+## Prompt Template vs Final Prompt
 
 This distinction is important.
 
-## Prompt Template
+### Prompt Template
 
 Reusable structure:
 
@@ -120,7 +89,7 @@ Reusable structure:
 Explain {topic} to a {level} student.
 ```
 
-## Final Prompt
+### Final Prompt
 
 The structure after values are provided:
 
@@ -138,9 +107,7 @@ Variables
 Final Prompt
 ```
 
----
-
-# 4. Template Variables
+## Template Variables
 
 Variables are represented using:
 
@@ -176,9 +143,7 @@ Result:
 Explain RAG.
 ```
 
----
-
-# 5. Multiple Variables
+## Multiple Variables
 
 A template can contain multiple variables.
 
@@ -204,9 +169,7 @@ Final prompt:
 Explain RAG to a beginner using a simple example.
 ```
 
----
-
-# 6. `PromptTemplate`
+## `PromptTemplate`
 
 LangChain provides:
 
@@ -244,9 +207,7 @@ Prompt Value
 
 The template is responsible for constructing the prompt.
 
----
-
-# 7. Why Does `invoke()` Appear Again?
+## Why Does `invoke()` Appear Again?
 
 We previously used:
 
@@ -284,9 +245,7 @@ invoke()
 
 This common interface allows LangChain components to be composed.
 
----
-
-# 8. Multiple Variables Example
+## Multiple Variables Example
 
 ```python
 from langchain_core.prompts import PromptTemplate
@@ -310,9 +269,7 @@ Conceptually:
 Explain RAG to a beginner using a simple example.
 ```
 
----
-
-# 9. PromptTemplate Does Not Provide Memory
+## PromptTemplate Does Not Provide Memory
 
 This is extremely important.
 
@@ -346,9 +303,7 @@ PromptTemplate
 Memory
 ```
 
----
-
-# 10. PromptTemplate Does Not Automatically Remember Conversations
+## PromptTemplate Does Not Automatically Remember Conversations
 
 Suppose a user previously said:
 
@@ -378,9 +333,7 @@ Prompt / Messages
 Chat Model
 ```
 
----
-
-# 11. `ChatPromptTemplate`
+## `ChatPromptTemplate`
 
 Chat Models work naturally with structured messages.
 
@@ -427,13 +380,11 @@ HumanMessage:
 Explain embeddings in simple terms.
 ```
 
----
-
-# 12. PromptTemplate vs ChatPromptTemplate
+## PromptTemplate vs ChatPromptTemplate
 
 The fundamental difference is how the input is represented.
 
-## PromptTemplate
+### PromptTemplate
 
 Primarily constructs a text prompt:
 
@@ -443,7 +394,7 @@ PromptTemplate
 Text Prompt
 ```
 
-## ChatPromptTemplate
+### ChatPromptTemplate
 
 Constructs structured chat messages:
 
@@ -467,9 +418,7 @@ ChatPromptTemplate
 Message-oriented prompt
 ```
 
----
-
-# 13. Important Correction About Chat History
+## Chat history correction
 
 `ChatPromptTemplate` can be used to construct prompts containing conversation history, but it does **not automatically remember previous conversations**.
 
@@ -511,9 +460,7 @@ ChatPromptTemplate
 Automatic Conversation History
 ```
 
----
-
-# 14. Example With Conversation History
+## Example With Conversation History
 
 Suppose the application has:
 
@@ -534,9 +481,7 @@ The important point is:
 
 > The application supplies the history. The ChatPromptTemplate does not magically retrieve it.
 
----
-
-# 15. Prompt Template + Chat Model
+## Prompt Template + Chat Model
 
 Now we can connect a prompt to a model.
 
@@ -577,9 +522,7 @@ Chat Model
 AIMessage
 ```
 
----
-
-# 16. Manual Composition
+## Manual Composition
 
 The previous example manually passes the output of one component to another:
 
@@ -593,9 +536,7 @@ This works.
 
 But LangChain provides a cleaner way to compose components.
 
----
-
-# 17. The `|` Operator
+## The `|` Operator
 
 LangChain allows Runnable components to be composed using:
 
@@ -633,9 +574,7 @@ Prompt Output
 Model Input
 ```
 
----
-
-# 18. First LangChain Chain
+## First LangChain Chain
 
 Example:
 
@@ -678,9 +617,7 @@ Congratulations:
 
 > This is a basic LangChain chain.
 
----
-
-# 19. What Does `|` Mean?
+## What Does `|` Mean?
 
 In LangChain:
 
@@ -728,9 +665,7 @@ Parser
 
 This is called composition.
 
----
-
-# 20. Why Is Composition Useful?
+## Why Is Composition Useful?
 
 Without composition:
 
@@ -754,13 +689,11 @@ result = chain.invoke(input)
 
 This creates a cleaner representation of the workflow.
 
----
-
-# 21. Prompt Template vs Chat Model
+## Prompt Template vs Chat Model
 
 These components have different responsibilities.
 
-## Prompt Template
+### Prompt Template
 
 Constructs the input:
 
@@ -770,7 +703,7 @@ Variables
 Prompt
 ```
 
-## Chat Model
+### Chat Model
 
 Processes the input and generates a response:
 
@@ -790,9 +723,7 @@ Prompt Template
 Chat Model
 ```
 
----
-
-# 22. ChatPromptTemplate + Chat Model
+## ChatPromptTemplate + Chat Model
 
 A more natural approach for Chat Models is:
 
@@ -843,9 +774,7 @@ Chat Model
 AIMessage
 ```
 
----
-
-# 23. Prompt Template Is Not Memory
+## Prompt Template Is Not Memory
 
 Keep this distinction clear:
 
@@ -875,9 +804,7 @@ What information am I actually sending to the model now?
 
 These concepts are related but different.
 
----
-
-# 24. Memory → Context → Prompt
+## Memory → Context → Prompt
 
 A useful architecture is:
 
@@ -899,9 +826,7 @@ Memory can provide information that becomes part of the prompt/context.
 
 But the Prompt Template itself does not act as memory.
 
----
-
-# 25. Prompt Variables
+## Prompt Variables
 
 Variables are represented as:
 
@@ -929,9 +854,7 @@ Final prompt:
 Explain Vector Databases.
 ```
 
----
-
-# 26. Missing Variables
+## Missing Variables
 
 Suppose:
 
@@ -959,9 +882,7 @@ This is one benefit of structured templates:
 
 > Required inputs are explicit.
 
----
-
-# 27. Prompt Injection
+## Prompt Injection
 
 Prompt Templates do not automatically solve prompt injection.
 
@@ -992,9 +913,7 @@ Remember:
 
 > Prompt instructions are behavior guidance, not authorization controls.
 
----
-
-# 28. Prompt Templates and Security
+## Prompt Templates and Security
 
 Do not depend on:
 
@@ -1024,10 +943,7 @@ Application Security Layer
 Tool Execution
 ```
 
----
-
-# 29. Runnable Mental Model
-
+## Runnable composition
 We have already seen:
 
 ```python
@@ -1070,9 +986,7 @@ Runnable
 
 This allows components to be composed.
 
----
-
-# 30. Basic Chain Architecture
+## Basic Chain Architecture
 
 Keep this architecture in mind:
 
@@ -1105,9 +1019,7 @@ response = chain.invoke(
 )
 ```
 
----
-
-# 31. Chain With More Components
+## Chain With More Components
 
 Later we can create:
 
@@ -1137,9 +1049,7 @@ result = chain.invoke(input)
 
 This is one of the core ideas behind LangChain composition.
 
----
-
-# 32. Why Use LangChain Instead of Python f-Strings?
+## Why Use LangChain Instead of Python f-Strings?
 
 For simple prompts, you can absolutely use:
 
@@ -1173,11 +1083,9 @@ Therefore:
 
 > PromptTemplate itself is not magic. Its value increases when it participates in larger composable workflows.
 
----
+## Best Practices
 
-# 33. Best Practices
-
-## 1. Make Prompts Reusable
+### Make Prompts Reusable
 
 Prefer:
 
@@ -1187,9 +1095,7 @@ Explain {topic} in {style}.
 
 over many hardcoded prompts.
 
----
-
-## 2. Use Appropriate Message Roles
+### Use Appropriate Message Roles
 
 With ChatPromptTemplate:
 
@@ -1203,9 +1109,7 @@ Human
 User Input
 ```
 
----
-
-## 3. Keep User Data Separate From Instructions
+### Keep User Data Separate From Instructions
 
 For example:
 
@@ -1219,27 +1123,19 @@ Human:
 
 This keeps responsibilities clearer.
 
----
-
-## 4. Validate Template Inputs
+### Validate Template Inputs
 
 Make sure all required variables are provided.
 
----
-
-## 5. Don't Use Prompt Templates as Memory
+### Don't Use Prompt Templates as Memory
 
 A template does not remember previous requests.
 
----
-
-## 6. Don't Use Prompts as Security
+### Don't Use Prompts as Security
 
 Prompt instructions cannot replace backend authorization and business rules.
 
----
-
-## 7. Prefer Composition for Larger Workflows
+### Prefer Composition for Larger Workflows
 
 Instead of manually connecting:
 
@@ -1256,324 +1152,11 @@ chain = prompt | model
 
 when appropriate.
 
----
-
-# 34. Mentor Discussions
-
-## Q: What is a Prompt Template?
-
-**Answer:**
-
-A Prompt Template is a reusable structure for constructing prompts using variables.
-
----
-
-## Q: What is `{topic}`?
-
-**Answer:**
-
-It is a template/input variable whose value is supplied when the template is invoked.
-
----
-
-## Q: What is the difference between a Prompt Template and a final prompt?
-
-**Answer:**
-
-A Prompt Template contains placeholders such as `{topic}`, while the final prompt contains the actual values.
-
----
-
-## Q: What is the difference between PromptTemplate and ChatPromptTemplate?
-
-**Answer:**
-
-`PromptTemplate` is primarily text-oriented, while `ChatPromptTemplate` constructs structured chat messages with roles such as system and human.
-
----
-
-## Q: Does ChatPromptTemplate automatically remember previous conversations?
-
-**Answer:**
-
-No. The application must provide the relevant conversation history.
-
----
-
-## Q: Is PromptTemplate a memory mechanism?
-
-**Answer:**
-
-No. PromptTemplate only constructs input from the values supplied to it.
-
----
-
-## Q: What does `prompt | model` mean?
-
-**Answer:**
-
-It composes the two Runnable components so that the output of the prompt becomes the input to the model.
-
----
-
-## Q: What does `chain.invoke()` do?
-
-**Answer:**
-
-It executes the composed workflow with the provided input.
-
----
-
-## Q: Why use LangChain composition?
-
-**Answer:**
-
-It allows multiple components to be connected into reusable workflows using common interfaces.
-
----
-
-# 35. Interview Nuggets
-
-### Q: What is a Prompt Template?
-
-**Answer:**
-
-A reusable prompt structure containing variables that can be filled with values at runtime.
-
----
-
-### Q: What is ChatPromptTemplate?
-
-**Answer:**
-
-A LangChain prompt abstraction designed to construct structured chat messages such as system and human messages.
-
----
-
-### Q: Does PromptTemplate provide memory?
-
-**Answer:**
-
-No. It only constructs prompts from the input supplied to it.
-
----
-
-### Q: Does ChatPromptTemplate automatically store conversation history?
-
-**Answer:**
-
-No. Conversation history must be supplied by the application or another memory/history mechanism.
-
----
-
-### Q: What does `|` mean in LangChain?
-
-**Answer:**
-
-It composes Runnable components so that the output of one becomes the input of the next.
-
----
-
-### Q: What is a chain?
-
-**Answer:**
-
-A chain is a workflow composed of multiple processing components.
-
-For example:
-
-```text
-Prompt
- ↓
-Model
- ↓
-Parser
-```
-
----
-
-# 36. Quick Revision Table
-
-| Concept              | Meaning                                         |                      |
-| -------------------- | ----------------------------------------------- | -------------------- |
-| Prompt Template      | Reusable prompt structure                       |                      |
-| Variable             | Runtime value such as `{topic}`                 |                      |
-| Final Prompt         | Prompt after variables are filled               |                      |
-| `PromptTemplate`     | Text-oriented prompt construction               |                      |
-| `ChatPromptTemplate` | Structured chat-message construction            |                      |
-| Chat Model           | Processes chat messages and generates responses |                      |
-| `                    | `                                               | Runnable composition |
-| Chain                | Composed workflow of components                 |                      |
-| Memory               | Mechanism for retaining/retrieving information  |                      |
-| Message History      | Sequence of previous messages                   |                      |
-| Context              | Information actually provided to the model      |                      |
-| AIMessage            | Model-generated response                        |                      |
-
----
-
-# 37. Final Architecture
-
-The basic flow is:
-
-```text
-Input Dictionary
-       │
-       ▼
-ChatPromptTemplate
-       │
-       ▼
-SystemMessage
-HumanMessage
-       │
-       ▼
-Chat Model
-       │
-       ▼
-AIMessage
-```
-
-In code:
-
-```python
-chain = prompt | model
-
-response = chain.invoke(
-    {
-        "topic": "embeddings"
-    }
-)
-```
-
----
-
-# 38. Memory vs Prompt Template
-
-Keep this distinction permanently:
-
-```text
-Prompt Template
-    ↓
-How do I construct the input?
-```
-
-```text
-Message History
-    ↓
-What previous messages do I have?
-```
-
-```text
-Memory
-    ↓
-How do I retain/retrieve information?
-```
-
-```text
-Context
-    ↓
-What information am I sending to the model NOW?
-```
-
-And:
-
-```text
-PromptTemplate
-    ≠
-Memory
-
-ChatPromptTemplate
-    ≠
-Automatic Memory
-
-ChatPromptTemplate
-    ≠
-Automatic Conversation History
-```
-
----
-
-# 39. Key Takeaways
-
-* Prompt Templates provide reusable prompt structures.
-* Variables use syntax such as `{topic}`.
-* Values are supplied when the template is invoked.
-* A final prompt contains actual values instead of placeholders.
-* `PromptTemplate` is primarily text-oriented.
-* `ChatPromptTemplate` constructs structured chat messages.
-* ChatPromptTemplate is especially useful with Chat Models.
-* ChatPromptTemplate does not automatically remember previous conversations.
-* PromptTemplate does not provide memory.
-* Message history must be supplied by the application.
-* `prompt | model` creates a composed workflow.
-* The `|` operator passes the output of one Runnable into the next.
-* `chain.invoke()` executes the complete chain.
-* LangChain becomes more useful as more components are composed.
-* Prompt Templates are not security mechanisms.
-* Application-level authentication, authorization, validation, and business rules remain necessary.
-
----
-
-# 40. One-Line Summary
-
-> **A Prompt Template creates reusable model input, while a Chat Model processes that input and generates an AI response.**
-
----
-
-# Connections
-
-Previous:
-
-* **R01 – What is LangChain and Why Do We Need It?**
-* **R02 – LangChain Installation & Project Setup**
-* **R03 – Chat Models**
-* **R04 – Messages: System, Human, AI & Tool Messages**
-
-Current:
-
-* **R05 – Prompt Templates & Basic Chains**
-
-Next:
-
-* **R06 – Output Parsers & Structured Output**
-
----
-
-# Final Mental Model
-
-```text
-                  MEMORY / STORAGE
-                         │
-                         ▼
-                Relevant History
-                         │
-                         ▼
-                  Prompt Template
-                         │
-                         ▼
-                      Messages
-                         │
-                         ▼
-                    Chat Model
-                         │
-                         ▼
-                      AIMessage
-                         │
-                         ▼
-                 Application Output
-```
-
-The most important distinction:
-
-```text
-Memory
-   ↓
-What information can be retrieved?
-
-Prompt Template
-   ↓
-How should that information be structured into model input?
-
-Chat Model
-   ↓
-What response should the model generate?
-```
+## Interview questions
+
+- What is a Prompt Template?
+- What is ChatPromptTemplate?
+- Does PromptTemplate provide memory?
+- Does ChatPromptTemplate automatically store conversation history?
+- What does `|` mean in LangChain?
+- What is a chain?

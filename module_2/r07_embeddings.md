@@ -1,28 +1,6 @@
-Yes. **Module 1.7 – Embeddings is complete.**
-Here is the concise but sufficiently detailed `R07_Embeddings.md`, including the important clarifications we discussed.
+# 7 – Embeddings
 
-````markdown
-# R07 – Embeddings
-
-> **Lesson Goal:** Understand what embeddings are, why they exist, how they differ from tokens and chunks, and how they enable semantic search and RAG.
-
----
-
-# Learning Objectives
-
-After completing this lesson, I should be able to:
-
-- Explain what an embedding is.
-- Explain what a vector is.
-- Differentiate between tokens, chunks, and embeddings.
-- Explain semantic similarity.
-- Explain how embeddings enable semantic search.
-- Understand how embeddings and Vector Databases work together.
-- Understand why embedding numbers are not human-readable meanings.
-
----
-
-# 1. Why Do Embeddings Exist?
+## Why Do Embeddings Exist?
 
 Computers cannot naturally determine that:
 
@@ -32,7 +10,7 @@ Computers cannot naturally determine that:
 "Python is my favorite programming language."
 
 "I really enjoy programming in Python."
-````
+```
 
 have similar meanings.
 
@@ -40,9 +18,7 @@ Humans can recognize the relationship easily.
 
 Embeddings provide a way to represent text numerically so that relationships between pieces of data can be measured mathematically.
 
----
-
-# 2. What Is an Embedding?
+## What Is an Embedding?
 
 An embedding is a **numerical vector representation** produced by an embedding model.
 
@@ -64,9 +40,7 @@ This list of numbers is called a **vector**.
 
 The vector can contain hundreds or thousands of dimensions depending on the embedding model.
 
----
-
-# 3. What Is a Vector?
+## What Is a Vector?
 
 For now, think of a vector as:
 
@@ -97,13 +71,11 @@ That is not how embeddings work.
 
 The useful information is distributed across the vector.
 
----
-
-# 4. Token vs Chunk vs Embedding
+## Token vs Chunk vs Embedding
 
 These are three different concepts.
 
-## Token
+### Token
 
 A token is a unit of text processed by a language model.
 
@@ -119,9 +91,7 @@ Token ID
 11321
 ```
 
----
-
-## Chunk
+### Chunk
 
 A chunk is a piece of a larger document.
 
@@ -135,9 +105,7 @@ Chunk 3
 
 Chunks are still text.
 
----
-
-## Embedding
+### Embedding
 
 An embedding is a numerical representation of text.
 
@@ -153,9 +121,7 @@ Embedding Model
 [0.21, -0.83, 0.45, ...]
 ```
 
----
-
-# 5. Important Pipeline
+## Pipeline
 
 Conceptually:
 
@@ -201,9 +167,7 @@ Chunk → Embedding Model → Vector
 
 The tokenization is handled internally.
 
----
-
-# 6. What Does Semantic Mean?
+## What Does Semantic Mean?
 
 **Semantic = related to meaning.**
 
@@ -243,9 +207,7 @@ Therefore:
 Low Semantic Similarity
 ```
 
----
-
-# 7. How Embeddings Capture Relationships
+## How Embeddings Capture Relationships
 
 Imagine a mathematical space.
 
@@ -256,7 +218,6 @@ Imagine a mathematical space.
                    /     \
               Python     Java
                  ●         ●
-
 
         Weather
            ●
@@ -277,9 +238,7 @@ The embedding does NOT contain an explicit dictionary like:
 
 Instead, relationships are represented across the entire vector space.
 
----
-
-# 8. Semantic Search
+## Semantic Search
 
 Traditional keyword search may struggle with:
 
@@ -315,9 +274,7 @@ Relevant Document Vector
 Original Text
 ```
 
----
-
-# 9. Vector Database
+## Vector Database
 
 A Vector Database stores and searches vectors efficiently.
 
@@ -335,9 +292,7 @@ The embedding is used for searching.
 
 The original text is returned for the LLM.
 
----
-
-# 10. Similarity
+## Similarity
 
 Two vectors are not normally compared using exact equality.
 
@@ -361,9 +316,7 @@ Common methods include:
 
 We will study these mathematically in **Module 7 – Vector Databases**.
 
----
-
-# 11. Cosine Similarity – Intuition
+## Cosine Similarity – Intuition
 
 Cosine similarity looks at the **direction** of vectors.
 
@@ -391,9 +344,7 @@ Low Similarity
 
 The exact mathematics will be covered later.
 
----
-
-# 12. Embeddings Are Not Just for Words
+## Embeddings Are Not Just for Words
 
 Embeddings can represent different types of data:
 
@@ -415,13 +366,11 @@ Embedding Model
 Vector
 ```
 
----
-
-# 13. Embedding Model vs LLM Embedding Layer
+## Embedding Model vs LLM Embedding Layer
 
 These should not be confused.
 
-## Embedding Model
+### Embedding Model
 
 Used externally for tasks such as:
 
@@ -437,9 +386,7 @@ Vector DB
 
 This is commonly used in RAG.
 
----
-
-## LLM Embedding Layer
+### LLM Embedding Layer
 
 Inside a language model:
 
@@ -457,13 +404,11 @@ Transformer
 
 Both involve numerical representations, but their purposes are different.
 
----
-
-# 14. Complete RAG Connection
+## Complete RAG Connection
 
 We can now connect the concepts learned so far.
 
-## Ingestion
+### Ingestion
 
 ```text
 PDF
@@ -477,7 +422,7 @@ Vectors
 Vector DB
 ```
 
-## Retrieval
+### Retrieval
 
 ```text
 User Question
@@ -499,11 +444,9 @@ Answer
 
 This is the foundation of semantic retrieval in RAG.
 
----
+## Common Misconceptions
 
-# 15. Common Misconceptions
-
-### ❌ Token = Embedding
+#### Token = Embedding
 
 No.
 
@@ -521,9 +464,7 @@ Embedding
 Numerical vector representation
 ```
 
----
-
-### ❌ Chunk = Token
+#### Chunk = Token
 
 No.
 
@@ -537,9 +478,7 @@ Chunk
 Many Tokens
 ```
 
----
-
-### ❌ Vector DB understands language
+#### Vector DB understands language
 
 Not directly.
 
@@ -547,17 +486,13 @@ The embedding model creates numerical representations.
 
 The Vector DB performs efficient mathematical search over those vectors.
 
----
-
-### ❌ One embedding number represents one meaning
+#### One embedding number represents one meaning
 
 No.
 
 The information is distributed across the vector.
 
----
-
-### ❌ Embeddings are human-readable meanings
+#### Embeddings are human-readable meanings
 
 No.
 
@@ -569,11 +504,9 @@ You generally cannot look at:
 
 and interpret the individual values directly.
 
----
+## Best Practices
 
-# 16. Best Practices
-
-### 1. Use the Same Embedding Model
+#### Use the Same Embedding Model
 
 Use the same embedding model for documents and queries.
 
@@ -589,9 +522,7 @@ Embedding Model A
 
 This keeps both representations in the same vector space.
 
----
-
-### 2. Store Useful Metadata
+#### Store Useful Metadata
 
 Example:
 
@@ -601,9 +532,7 @@ Example:
 
 Metadata can later be used to filter retrieval.
 
----
-
-### 3. Don't Assume Larger Dimensions = Better
+#### Don't Assume Larger Dimensions = Better
 
 A higher-dimensional embedding is not automatically better.
 
@@ -614,142 +543,15 @@ Embedding quality depends on:
 * Task
 * Retrieval strategy
 
----
+## Interview questions
 
-# 17. Mentor Discussions
+- What is an embedding?
+- What is semantic similarity?
+- What is the difference between a token and an embedding?
+- Why are embeddings useful in RAG?
+- Does each embedding dimension have a human-readable meaning?
 
-## Q: How does Vector DB return text if it searches embeddings?
-
-The Vector DB can store both:
-
-```text
-Embedding
-+
-Original Text
-+
-Metadata
-```
-
-The embedding is used for search, while the stored text is returned to the application.
-
-Some architectures store only an ID and retrieve the text from another database.
-
----
-
-## Q: Are embeddings a mapping of words to numbers?
-
-Not in the simple sense.
-
-They are learned numerical representations where relationships between inputs can be captured in vector space.
-
----
-
-## Q: Why are "car" and "automobile" potentially close?
-
-Because the embedding model learned language relationships from its training data.
-
-It learned that these concepts frequently occur in related contexts.
-
----
-
-## Q: What does semantic mean?
-
-Semantic means **related to meaning**.
-
-Semantic similarity means similarity in meaning rather than exact word matching.
-
----
-
-# 18. Key Takeaways
-
-* Embeddings are numerical vector representations.
-* A vector is a list of numbers.
-* Embedding values are not individually human-readable meanings.
-* Semantic means related to meaning.
-* Embeddings enable semantic similarity search.
-* Chunks are text; embeddings are vectors.
-* Tokens and embeddings are different.
-* Vector databases search embeddings and return associated data.
-* Embeddings are fundamental to modern RAG systems.
-
----
-
-# New Terminology
-
-| Term                | Meaning                                           |
-| ------------------- | ------------------------------------------------- |
-| Embedding           | Numerical vector representation                   |
-| Vector              | List of numerical values                          |
-| Semantic            | Related to meaning                                |
-| Semantic Similarity | Similarity in meaning                             |
-| Embedding Model     | Model that converts data into vectors             |
-| Vector Database     | Database optimized for vector search              |
-| Cosine Similarity   | Similarity based on vector direction              |
-| Euclidean Distance  | Straight-line distance between vectors            |
-| Dot Product         | Mathematical operation used for vector comparison |
-
----
-
-# Interview Nuggets
-
-### Q: What is an embedding?
-
-**Answer:**
-
-An embedding is a numerical vector representation of data that allows relationships between inputs to be compared mathematically.
-
----
-
-### Q: What is semantic similarity?
-
-**Answer:**
-
-Semantic similarity measures how similar two pieces of data are in meaning rather than simply comparing exact words.
-
----
-
-### Q: What is the difference between a token and an embedding?
-
-**Answer:**
-
-A token is a unit of text processed by a language model, while an embedding is a numerical vector representation used to capture relationships between data.
-
----
-
-### Q: Why are embeddings useful in RAG?
-
-**Answer:**
-
-They allow documents and user queries to be represented in the same vector space, enabling semantic similarity search to retrieve relevant information.
-
----
-
-### Q: Does each embedding dimension have a human-readable meaning?
-
-**Answer:**
-
-No. Meaning is distributed across the vector rather than being assigned directly to individual dimensions.
-
----
-
-# Connections
-
-Previous:
-
-* R01 – What is an LLM?
-* R02 – Tokens
-* R03 – Context Window
-* R04 – Temperature
-* R05 – Top-p
-* R06 – Prompt Engineering
-
-Next:
-
-* R08 – Transformers / Embedding Mathematics
-
----
-
-# Summary
+## Summary
 
 Embeddings convert data into numerical vectors that allow relationships between pieces of data to be measured mathematically.
 
@@ -769,9 +571,9 @@ Relevant Information
 
 This is the foundation of semantic search and one of the core building blocks of RAG.
 
-````
+```
 
-### Your mental model after R07
+#### Your mental model after R07
 
 You should now be able to distinguish these clearly:
 
@@ -781,23 +583,20 @@ CHUNK
         ↓
       TEXT
 
-
 TOKEN
 "car"
         ↓
     Token ID
-
 
 EMBEDDING
 [0.12, -0.83, 0.44, ...]
         ↓
 Numerical representation
 
-
 VECTOR DB
         ↓
 Stores/searches vectors
-````
+```
 
 And the overall RAG relationship:
 
@@ -816,5 +615,3 @@ Relevant Chunks
    ↓
 LLM
 ```
-
-**Next lesson: Module 1.8 — Embedding Mathematics / Vector Intuition.** We'll start with the simplest possible vectors and gradually build toward cosine similarity, without assuming linear algebra.
