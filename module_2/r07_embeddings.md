@@ -615,3 +615,44 @@ Relevant Chunks
    ↓
 LLM
 ```
+
+## Key takeaways
+
+* Embeddings are numerical vector representations.
+* A vector is a list of numbers.
+* Embedding values are not individually human-readable meanings.
+* Semantic means related to meaning.
+* Embeddings enable semantic similarity search.
+* Chunks are text; embeddings are vectors.
+* Tokens and embeddings are different.
+* Vector databases search embeddings and return associated data.
+* Embeddings are fundamental to modern RAG systems.
+
+## New terminology
+
+| Term                | Meaning                                           |
+| ------------------- | ------------------------------------------------- |
+| Embedding           | Numerical vector representation                   |
+| Vector              | List of numerical values                          |
+| Semantic            | Related to meaning                                |
+| Semantic Similarity | Similarity in meaning                             |
+| Embedding Model     | Model that converts data into vectors             |
+| Vector Database     | Database optimized for vector search              |
+| Cosine Similarity   | Similarity based on vector direction              |
+| Euclidean Distance  | Straight-line distance between vectors            |
+| Dot Product         | Mathematical operation used for vector comparison |
+
+## Connections
+
+Previous:
+
+* **R06 – Prompt Engineering**
+
+Current:
+
+* **R07 – Embeddings**
+
+Next:
+
+* **R08 – Transformers**
+

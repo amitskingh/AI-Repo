@@ -1066,3 +1066,153 @@ This makes debugging much easier.
 - Is ToolMessage nested inside AIMessage?
 - What happens after a tool executes?
 - Is a SystemMessage a security boundary?
+
+## Quick revision
+
+| Concept         | Meaning                                                    |
+| --------------- | ---------------------------------------------------------- |
+| `SystemMessage` | Instructions/context for model behavior                    |
+| `HumanMessage`  | User input                                                 |
+| `AIMessage`     | AI/model response                                          |
+| `ToolMessage`   | Tool execution result                                      |
+| Tool            | Actual external capability/function                        |
+| Tool Call       | Model's request to execute a tool                          |
+| Message History | Sequence of conversation messages                          |
+| Memory          | Application mechanism for retaining/retrieving information |
+| Context         | Information sent to the model for a specific request       |
+| Context Window  | Model's limit for processing context/tokens                |
+
+## Tool calling model
+
+```text
+                         USER
+                           │
+                           ▼
+                    HumanMessage
+                           │
+                           ▼
+                          LLM
+                           │
+                  ┌────────┴────────┐
+                  │                 │
+           Direct Answer        Tool Needed
+                  │                 │
+                  ▼                 ▼
+             AIMessage          AIMessage
+             (content)          (tool_call)
+                                    │
+                                    ▼
+                               Application
+                                    │
+                                    ▼
+                                  Tool
+                                    │
+                                    ▼
+                              ToolMessage
+                                    │
+                                    ▼
+                                  LLM
+                                    │
+                                    ▼
+                               AIMessage
+                              (final answer)
+```
+
+## Context and memory
+
+```text
+                    MEMORY / STORAGE
+                           │
+                           ▼
+                Retrieve Relevant Info
+                           │
+                           ▼
+                      MESSAGE HISTORY
+                           │
+                           ▼
+                         CONTEXT
+                           │
+                           ▼
+                       CHAT MODEL
+                           │
+                           ▼
+                        RESPONSE
+```
+
+Remember:
+
+```text
+Memory
+   ≠
+Context
+
+Tool
+   ≠
+ToolMessage
+
+AIMessage
+   ≠
+ToolMessage
+```
+
+## Key takeaways
+
+* Messages are structured pieces of information exchanged during an LLM interaction.
+* Message roles tell the model/application the purpose of each message.
+* `SystemMessage` provides instructions/context.
+* `HumanMessage` represents user input.
+* `AIMessage` represents model output.
+* `ToolMessage` represents the result of a tool execution.
+* An `AIMessage` can contain a tool-call request.
+* The application executes the actual tool.
+* The tool result is represented as a separate `ToolMessage`.
+* `ToolMessage` is not nested inside `AIMessage`.
+* The final `AIMessage` is generated after the model receives the tool result.
+* The LLM is involved whether it answers directly or requests a tool.
+* Message history is a sequence of messages.
+* Memory is an application-level mechanism for retaining/retrieving information.
+* Context is the information actually provided to the model for a particular request.
+* Messages included in the request consume context-window capacity.
+* System prompts are not security boundaries.
+* Application-level security must enforce authentication, authorization, validation, and business rules.
+
+## Connections
+
+Previous:
+
+* **R03 – Chat Models**
+
+Current:
+
+* **R04 – Messages: System, Human, AI & Tool Messages**
+
+Next:
+
+* **R05 – Prompt Templates & Basic Chains**
+
+## One-line summary
+
+> **Messages provide the structured conversation between the user, AI, and tools; the application controls which messages become context for each model call.**
+
+## Final mental model
+
+```text
+HumanMessage
+      ↓
+AIMessage
+(tool call)
+      ↓
+Tool executes
+      ↓
+ToolMessage
+(tool result)
+      ↓
+AIMessage
+(final answer)
+```
+
+And the three rules worth memorizing:
+
+1. **The LLM requests a tool; the application executes it.**
+2. **`AIMessage` and `ToolMessage` are separate messages.**
+3. **The model only knows what is included in its current context.**

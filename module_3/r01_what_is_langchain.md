@@ -711,3 +711,35 @@ If a simple provider SDK solves the problem cleanly, LangChain isn't automatical
 - Why use LangChain instead of directly calling an LLM API?
 - Does LangChain improve the intelligence of an LLM?
 - Is LangChain an alternative to OpenAI?
+
+## Final mental model
+
+Keep this architecture in mind:
+
+```text
+                     YOUR APPLICATION
+                            │
+                            ▼
+                        LangChain
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+       Prompt             Model             Tool
+          │                 │                 │
+          └─────────────────┼─────────────────┘
+                            │
+                        Runnable
+                            │
+                 ┌──────────┴──────────┐
+                 │                     │
+             Retriever              Parser
+                 │                     │
+                 └──────────┬──────────┘
+                            │
+                            ▼
+                           LLM
+```
+
+The most important concept:
+
+> **LangChain is a framework for composing the pieces needed to build an LLM-powered application.**

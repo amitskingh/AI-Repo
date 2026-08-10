@@ -602,3 +602,44 @@ Zero-shot, One-shot, and Few-shot prompting provide different levels of examples
 The most important principle is:
 
 > **Give the model the right instructions and the right context, but never rely on the model alone for security or authorization.**
+
+## Key takeaways
+
+* Prompt Engineering means designing effective instructions for an LLM.
+* A prompt can contain much more than the user's message.
+* Good prompts clearly define the task and relevant context.
+* Zero-shot uses no examples.
+* One-shot uses one example.
+* Few-shot uses multiple examples.
+* Prompt Templates make prompts reusable.
+* Prompt Injection attempts to manipulate model instructions.
+* Security should never rely solely on the LLM.
+* Prompts should be tested like code.
+
+## New terminology
+
+| Term               | Meaning                                |
+| ------------------ | -------------------------------------- |
+| Prompt             | Input/instructions provided to an LLM  |
+| Prompt Engineering | Designing effective LLM instructions   |
+| Zero-shot          | Task without examples                  |
+| One-shot           | Task with one example                  |
+| Few-shot           | Task with multiple examples            |
+| Prompt Template    | Reusable prompt with variables         |
+| Prompt Injection   | Attempt to manipulate LLM instructions |
+| Constraint         | A rule limiting the desired output     |
+
+## Connections
+
+Previous:
+
+* **R05 – Top-p**
+
+Current:
+
+* **R06 – Prompt Engineering**
+
+Next:
+
+* **R07 – Embeddings**
+

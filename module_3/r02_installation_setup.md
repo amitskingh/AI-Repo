@@ -629,3 +629,92 @@ Prefer current package documentation and compatible versions.
 - What is `langchain-openai`?
 - What is `invoke()` in LangChain?
 - What does `AIMessage` represent?
+
+## Key takeaways
+
+* Use a virtual environment for the project.
+* Install LangChain separately from provider-specific integrations.
+* Use environment variables for API keys.
+* Never commit `.env`.
+* `ChatOpenAI` provides the LangChain OpenAI chat-model integration.
+* `model.invoke()` executes the model call.
+* Chat models generally return an `AIMessage`.
+* `response.content` gives the generated content.
+* `invoke()` will become a fundamental concept throughout LangChain.
+* LangChain sits between your application and the model/provider integration.
+* LangChain is optional; direct provider SDKs can also be used.
+* Don't treat LangChain as a black box.
+
+## Quick revision
+
+```text
+Project
+   ↓
+Virtual Environment
+   ↓
+Install Dependencies
+   ↓
+Environment Variables
+   ↓
+Provider Integration
+   ↓
+Chat Model
+   ↓
+invoke()
+   ↓
+AIMessage
+   ↓
+response.content
+```
+
+## Connections
+
+Previous:
+
+* **R01 – What is LangChain and Why Do We Need It?**
+
+Current:
+
+* **R02 – LangChain Installation & Project Setup**
+
+Next:
+
+* **R03 – Chat Models**
+
+## Final mental model
+
+```text
+                 YOUR PYTHON APPLICATION
+                          │
+                          ▼
+                     LangChain
+                          │
+                          ▼
+                    ChatOpenAI
+                          │
+                          ▼
+                  Provider API
+                          │
+                          ▼
+                         LLM
+                          │
+                          ▼
+                      AIMessage
+                          │
+                          ▼
+                  response.content
+```
+
+The first important LangChain pattern is:
+
+```python
+response = model.invoke("Hello")
+```
+
+and:
+
+```python
+print(response.content)
+```
+
+This is the foundation for the more advanced LangChain composition we will build next.

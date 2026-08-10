@@ -658,3 +658,127 @@ The same principle we've seen with tool calling applies here:
 - Does Pydantic guarantee that an LLM's response is factually correct?
 - Difference between Structured Output and Tool Calling?
 - Why is "Return JSON" not always sufficient?
+
+## Key takeaways
+
+- Free-form LLM responses are difficult for applications to parse reliably.
+- Structured Output provides predictable data structures.
+- JSON is a common format for structured data.
+- JSON alone does not necessarily define the exact schema.
+- Pydantic provides schemas and validation in Python.
+- LangChain can connect LLMs with structured schemas.
+- Structured Output is different from Tool Calling.
+- Schema validation does not guarantee factual correctness.
+- Production applications should validate LLM output before using it.
+
+## New terminology
+
+| Term | Meaning |
+|---|---|
+| Structured Output | LLM response following a predefined structure |
+| Schema | Definition of expected fields and data types |
+| Pydantic | Python library for data models and validation |
+| Validation | Checking whether data satisfies defined requirements |
+| JSON | Common machine-readable data format |
+| JSON Mode | Model output constrained toward valid JSON |
+| Structured Output | Output constrained to a defined schema |
+
+## Connections
+
+Previous:
+
+* **R09 – Function Calling & Tool Calling**
+
+Current:
+
+* **R10 – Structured Output**
+
+Next:
+
+* **Module 3 – LangChain Fundamentals**
+
+## Module completion
+
+With R10, the conceptual lessons of Module 1 are complete:
+
+```text
+1.1  What is an LLM
+1.2  Tokens
+1.3  Context Window
+1.4  Temperature
+1.5  Top-p
+1.6  Prompt Engineering
+1.7  Embeddings
+1.8  Transformers
+1.9  Function / Tool Calling
+1.10 Structured Output
+```
+
+## Final mental model
+
+```text
+                         USER
+                           │
+                           ▼
+                         PROMPT
+                           │
+                           ▼
+                         TOKENS
+                           │
+                           ▼
+                       EMBEDDINGS
+                           │
+                           ▼
+                      TRANSFORMER
+                           │
+                           ▼
+                NEXT TOKEN PROBABILITIES
+                           │
+                           ▼
+                  TEMPERATURE / TOP-P
+                           │
+                           ▼
+                      NEXT TOKEN
+                           │
+                           ▼
+                      GENERATION
+                           │
+                           ▼
+                  STRUCTURED OUTPUT
+                           │
+                           ▼
+                      VALIDATION
+                           │
+                           ▼
+                      APPLICATION
+```
+
+When external capabilities are required:
+
+```text
+                         LLM
+                          │
+                 ┌────────┴────────┐
+                 │                 │
+            Direct Answer      Tool Call
+                                   │
+                                   ▼
+                           Your Application
+                                   │
+                    ┌──────────────┼──────────────┐
+                    ▼              ▼              ▼
+                   API             DB           Search
+                    │              │              │
+                    └──────────────┼──────────────┘
+                                   ▼
+                                  LLM
+                                   │
+                                   ▼
+                                Answer
+```
+
+## Final principle
+
+> **The LLM generates information and decisions, while the application provides structure, validation, security, authorization, and execution.**
+
+This principle will continue to appear throughout LangChain, RAG, Agents, and LangGraph.

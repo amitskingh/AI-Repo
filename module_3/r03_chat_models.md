@@ -840,3 +840,113 @@ when asynchronous execution is appropriate.
 - What is the difference between memory and context?
 - Why shouldn't we send the entire conversation history forever?
 - Difference between `invoke()` and `ainvoke()`?
+
+## Quick revision
+
+| Concept | Meaning |
+|---|---|
+| Chat Model | Interface for interacting with conversational LLMs |
+| SystemMessage | Instructions/context for model behavior |
+| HumanMessage | User input |
+| AIMessage | AI-generated response |
+| ToolMessage | Message containing tool execution results |
+| Context | Information sent to the model for a particular call |
+| Memory | Application mechanism for retaining/retrieving information |
+| Context Window | Maximum context the model can process according to its limits |
+| `invoke()` | Synchronous execution |
+| `ainvoke()` | Asynchronous execution |
+| Message History | Sequence of previous conversation messages |
+
+## Key takeaways
+
+- Chat Models work naturally with conversational messages.
+- A Chat Model is not the same thing as persistent memory.
+- The primary message types are `SystemMessage`, `HumanMessage`, and `AIMessage`.
+- `SystemMessage` provides instructions/context.
+- `HumanMessage` represents user input.
+- `AIMessage` represents model output.
+- Previous messages can be provided as conversation context.
+- The model does not automatically retain previous calls as permanent memory.
+- Memory is an application-level concept.
+- Memory can use PostgreSQL, Redis, in-memory storage, vector databases, or other mechanisms.
+- Context is what is actually sent to the model for a particular call.
+- Context contributes to the model's context window.
+- Unnecessary history should be avoided.
+- `invoke()` is synchronous.
+- `ainvoke()` is asynchronous.
+- Many LangChain components use the same invocation concepts because of the Runnable architecture.
+
+## Final mental model
+
+Keep this architecture in mind:
+
+```text
+                       APPLICATION
+                            │
+                            ▼
+                    Memory / Storage
+                            │
+                            ▼
+                  Select Relevant History
+                            │
+                            ▼
+                         Context
+                            │
+             ┌──────────────┼──────────────┐
+             ▼              ▼              ▼
+          System          Human           AI
+          Message         Message        Message
+             │              │              │
+             └──────────────┼──────────────┘
+                            ▼
+                       Chat Model
+                            │
+                            ▼
+                       Provider API
+                            │
+                            ▼
+                           LLM
+                            │
+                            ▼
+                        AIMessage
+```
+
+The most important relationship is:
+
+```text
+Memory
+   ↓
+Select Relevant Information
+   ↓
+Context
+   ↓
+Chat Model
+   ↓
+Response
+```
+
+And:
+
+```text
+Chat Model
+    ≠
+Memory
+```
+
+## Connections
+
+Previous:
+
+* **R02 – LangChain Installation & Project Setup**
+
+Current:
+
+* **R03 – Chat Models**
+
+Next:
+
+* **R04 – Messages: System, Human, AI & Tool Messages**
+
+## One-line summary
+
+> **A Chat Model processes conversational messages supplied by the application; it does not automatically provide persistent memory.**

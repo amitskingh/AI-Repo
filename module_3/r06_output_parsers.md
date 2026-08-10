@@ -1273,3 +1273,188 @@ Confirmation
 - Does structured output replace security?
 - What is `PydanticOutputParser`?
 - What is `JsonOutputParser`?
+
+## Quick revision
+
+| Concept                    | Meaning                                     |
+| -------------------------- | ------------------------------------------- |
+| Output Parser              | Transforms model output                     |
+| `StrOutputParser`          | Converts output to string                   |
+| `JsonOutputParser`         | Parses JSON-style output                    |
+| `PydanticOutputParser`     | Parses/validates using Pydantic             |
+| Structured Output          | Output following a defined schema           |
+| `with_structured_output()` | Model interface for structured results      |
+| Schema                     | Definition of expected fields/types         |
+| Pydantic                   | Python library for data modeling/validation |
+| Schema Validation          | Checks structure/types                      |
+| Business Validation        | Checks application rules                    |
+| Tool Calling               | Structured request to execute a capability  |
+
+## Security model
+
+Structured output does not change the security architecture.
+
+For example:
+
+```text
+LLM
+ ↓
+{
+    "community_id": 123,
+    "action": "delete"
+}
+ ↓
+Authentication
+ ↓
+Authorization
+ ↓
+Input Validation
+ ↓
+Business Logic
+ ↓
+Confirmation
+ ↓
+Tool Execution
+```
+
+Never:
+
+```text
+LLM
+ ↓
+Delete Community
+```
+
+## Final mental model
+
+The overall LangChain flow is now:
+
+```text
+                    USER INPUT
+                         │
+                         ▼
+                 Prompt Template
+                         │
+                         ▼
+                    Chat Model
+                         │
+                         ▼
+                      AIMessage
+                         │
+                ┌────────┴────────┐
+                │                 │
+                ▼                 ▼
+          Output Parser     Structured Output
+                │                 │
+                └────────┬────────┘
+                         ▼
+                  Application Data
+                         │
+                         ▼
+                   Validation
+                         │
+                         ▼
+                  Business Logic
+```
+
+Remember:
+
+```text
+Structured
+    ≠
+Correct
+
+Structured
+    ≠
+Safe
+
+Structured
+    ≠
+Authorized
+```
+
+## Key takeaways
+
+* LLMs naturally generate human-readable responses.
+* Applications often need predictable data.
+* Output Parsers transform model output into useful representations.
+* `StrOutputParser` is useful when plain text is required.
+* `JsonOutputParser` and `PydanticOutputParser` are examples of specialized parsers.
+* `model.with_structured_output()` is a modern approach for schema-based structured output when supported.
+* Output Parsing and Structured Output are related but different concepts.
+* Asking the model to "return JSON" does not guarantee reliable JSON.
+* Pydantic can define and validate structured data.
+* Schema validation checks structure and types.
+* Business validation checks application-specific rules.
+* Structured output does not guarantee correctness.
+* Structured output does not guarantee safety.
+* Structured output does not provide authorization.
+* Tool Calling and Structured Output are related but have different purposes.
+* LangChain allows output processing to be composed into chains.
+
+## One-line summary
+
+> **Output parsing and structured output turn probabilistic model responses into predictable application-friendly data, while validation and business rules remain the application's responsibility.**
+
+## Connections
+
+Previous:
+
+* **R05 – Prompt Templates & Basic Chains**
+
+Current:
+
+* **R06 – Output Parsers & Structured Output**
+
+Next:
+
+* **R07 – Runnables & LCEL**
+
+## Final mental model to memorize
+
+```text
+Prompt
+   ↓
+Chat Model
+   ↓
+AIMessage
+   ↓
+┌───────────────────────────┐
+│                           │
+│ Plain Text                │
+│   ↓                       │
+│ StrOutputParser           │
+│                           │
+│ Structured Data           │
+│   ↓                       │
+│ with_structured_output()  │
+│                           │
+│ Raw Output Transformation │
+│   ↓                       │
+│ Appropriate Parser        │
+│                           │
+└───────────────────────────┘
+   ↓
+Application Data
+   ↓
+Validation
+   ↓
+Business Logic
+```
+
+The three things to remember for now:
+
+```text
+StrOutputParser
+    ↓
+Plain text
+
+with_structured_output()
+    ↓
+Structured data
+
+Tool Calling
+    ↓
+Structured action request
+```
+

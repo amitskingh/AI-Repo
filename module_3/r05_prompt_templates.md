@@ -1160,3 +1160,174 @@ when appropriate.
 - Does ChatPromptTemplate automatically store conversation history?
 - What does `|` mean in LangChain?
 - What is a chain?
+
+## Quick revision
+
+| Concept              | Meaning                                         |                      |
+| -------------------- | ----------------------------------------------- | -------------------- |
+| Prompt Template      | Reusable prompt structure                       |                      |
+| Variable             | Runtime value such as `{topic}`                 |                      |
+| Final Prompt         | Prompt after variables are filled               |                      |
+| `PromptTemplate`     | Text-oriented prompt construction               |                      |
+| `ChatPromptTemplate` | Structured chat-message construction            |                      |
+| Chat Model           | Processes chat messages and generates responses |                      |
+| `                    | `                                               | Runnable composition |
+| Chain                | Composed workflow of components                 |                      |
+| Memory               | Mechanism for retaining/retrieving information  |                      |
+| Message History      | Sequence of previous messages                   |                      |
+| Context              | Information actually provided to the model      |                      |
+| AIMessage            | Model-generated response                        |                      |
+
+## Architecture
+
+The basic flow is:
+
+```text
+Input Dictionary
+       │
+       ▼
+ChatPromptTemplate
+       │
+       ▼
+SystemMessage
+HumanMessage
+       │
+       ▼
+Chat Model
+       │
+       ▼
+AIMessage
+```
+
+In code:
+
+```python
+chain = prompt | model
+
+response = chain.invoke(
+    {
+        "topic": "embeddings"
+    }
+)
+```
+
+## Memory vs prompt template
+
+Keep this distinction permanently:
+
+```text
+Prompt Template
+    ↓
+How do I construct the input?
+```
+
+```text
+Message History
+    ↓
+What previous messages do I have?
+```
+
+```text
+Memory
+    ↓
+How do I retain/retrieve information?
+```
+
+```text
+Context
+    ↓
+What information am I sending to the model NOW?
+```
+
+And:
+
+```text
+PromptTemplate
+    ≠
+Memory
+
+ChatPromptTemplate
+    ≠
+Automatic Memory
+
+ChatPromptTemplate
+    ≠
+Automatic Conversation History
+```
+
+## Key takeaways
+
+* Prompt Templates provide reusable prompt structures.
+* Variables use syntax such as `{topic}`.
+* Values are supplied when the template is invoked.
+* A final prompt contains actual values instead of placeholders.
+* `PromptTemplate` is primarily text-oriented.
+* `ChatPromptTemplate` constructs structured chat messages.
+* ChatPromptTemplate is especially useful with Chat Models.
+* ChatPromptTemplate does not automatically remember previous conversations.
+* PromptTemplate does not provide memory.
+* Message history must be supplied by the application.
+* `prompt | model` creates a composed workflow.
+* The `|` operator passes the output of one Runnable into the next.
+* `chain.invoke()` executes the complete chain.
+* LangChain becomes more useful as more components are composed.
+* Prompt Templates are not security mechanisms.
+* Application-level authentication, authorization, validation, and business rules remain necessary.
+
+## One-line summary
+
+> **A Prompt Template creates reusable model input, while a Chat Model processes that input and generates an AI response.**
+
+## Connections
+
+Previous:
+
+* **R04 – Messages: System, Human, AI & Tool Messages**
+
+Current:
+
+* **R05 – Prompt Templates & Basic Chains**
+
+Next:
+
+* **R06 – Output Parsers & Structured Output**
+
+## Final mental model
+
+```text
+                  MEMORY / STORAGE
+                         │
+                         ▼
+                Relevant History
+                         │
+                         ▼
+                  Prompt Template
+                         │
+                         ▼
+                      Messages
+                         │
+                         ▼
+                    Chat Model
+                         │
+                         ▼
+                      AIMessage
+                         │
+                         ▼
+                 Application Output
+```
+
+The most important distinction:
+
+```text
+Memory
+   ↓
+What information can be retrieved?
+
+Prompt Template
+   ↓
+How should that information be structured into model input?
+
+Chat Model
+   ↓
+What response should the model generate?
+```
