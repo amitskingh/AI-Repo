@@ -1690,7 +1690,7 @@ Current:
 
 Next:
 
-* **R08 – RAG: Retriever, Chunks, Embeddings & Vector Database**
+* **R08 – RAG Fundamentals**
 
 ---
 

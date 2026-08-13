@@ -26,7 +26,7 @@ By the end of this module you should be able to:
 ```
 LangChain overview → Installation & setup → Chat Models → Messages
   → Prompt Templates & Chains → Output Parsers & Structured Output
-  → Runnables & LCEL
+  → Runnables & LCEL → RAG Fundamentals
 ```
 
 ## Contents
@@ -40,6 +40,7 @@ LangChain overview → Installation & setup → Chat Models → Messages
 | [r05_prompt_templates.md](r05_prompt_templates.md) | Prompt templates & basic chains | [p03.py](p03.py), [p04.py](p04.py) |
 | [r06_output_parsers.md](r06_output_parsers.md) | Output parsers & structured output | [p05_str_output_parser.py](p05_str_output_parser.py), [p06_structured_output.py](p06_structured_output.py), [p07_pydantic_output_parser.py](p07_pydantic_output_parser.py) |
 | [r07_runnables_lcel.md](r07_runnables_lcel.md) | Runnables & LCEL | [p08_runnable_lamda.py](p08_runnable_lamda.py), [p09_runnable_passthrough.py](p09_runnable_passthrough.py), [p10_runnable_parallel.py](p10_runnable_parallel.py), [p11_runnable_sequence.py](p11_runnable_sequence.py), [p12_runnable_branch.py](p12_runnable_branch.py), [p13_runnable_passthrough_paralled.py](p13_runnable_passthrough_paralled.py) |
+| [r08_rag_fundamentals.md](r08_rag_fundamentals.md) | RAG fundamentals | — |
 
 ## How to use
 
