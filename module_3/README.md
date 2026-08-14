@@ -26,7 +26,8 @@ By the end of this module you should be able to:
 ```
 LangChain overview → Installation & setup → Chat Models → Messages
   → Prompt Templates & Chains → Output Parsers & Structured Output
-  → Runnables & LCEL → RAG Fundamentals
+  → Runnables & LCEL → RAG Fundamentals → Practical RAG Pipeline
+  → Retrieval Quality & Advanced Retrieval
 ```
 
 ## Contents
@@ -41,6 +42,8 @@ LangChain overview → Installation & setup → Chat Models → Messages
 | [r06_output_parsers.md](r06_output_parsers.md) | Output parsers & structured output | [p05_str_output_parser.py](p05_str_output_parser.py), [p06_structured_output.py](p06_structured_output.py), [p07_pydantic_output_parser.py](p07_pydantic_output_parser.py) |
 | [r07_runnables_lcel.md](r07_runnables_lcel.md) | Runnables & LCEL | [p08_runnable_lamda.py](p08_runnable_lamda.py), [p09_runnable_passthrough.py](p09_runnable_passthrough.py), [p10_runnable_parallel.py](p10_runnable_parallel.py), [p11_runnable_sequence.py](p11_runnable_sequence.py), [p12_runnable_branch.py](p12_runnable_branch.py), [p13_runnable_passthrough_paralled.py](p13_runnable_passthrough_paralled.py) |
 | [r08_rag_fundamentals.md](r08_rag_fundamentals.md) | RAG fundamentals | — |
+| [r09_practical_rag_pipeline.md](r09_practical_rag_pipeline.md) | Practical RAG pipeline | [p14_rag_mini_example.py](p14_rag_mini_example.py) |
+| [r10_retrieval_quality.md](r10_retrieval_quality.md) | Retrieval quality & advanced retrieval | — |
 
 ## How to use
 
