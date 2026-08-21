@@ -29,6 +29,7 @@ LangChain overview → Installation & setup → Chat Models → Messages
   → Runnables & LCEL → RAG Fundamentals → Practical RAG Pipeline
   → Retrieval Quality & Advanced Retrieval
   → RAG Evaluation & Production Considerations
+  → Module Revision + Practical Project
 ```
 
 ## Contents
@@ -46,6 +47,8 @@ LangChain overview → Installation & setup → Chat Models → Messages
 | [r09_practical_rag_pipeline.md](r09_practical_rag_pipeline.md) | Practical RAG pipeline | [p14_rag_mini_example.py](p14_rag_mini_example.py) |
 | [r10_retrieval_quality.md](r10_retrieval_quality.md) | Retrieval quality & advanced retrieval | — |
 | [r11_rag_evaluation.md](r11_rag_evaluation.md) | RAG evaluation & production considerations | — |
+| [r12_module_revision.md](r12_module_revision.md) | Module revision + practical project | — |
+| [revision.md](revision.md) | Compact revision guide (R01–R12) | — |
 
 ## How to use
 
