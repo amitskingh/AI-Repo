@@ -31,6 +31,12 @@ if __name__ == "__main__":
     results = vector_store.similarity_search(
         query,
         k=3,
+        filter={
+            "$and": [
+                {"community_id": {"$eq": 101}},
+                {"version": {"$eq": 2026}},
+            ]
+        },
     )
 
     for result in results:
