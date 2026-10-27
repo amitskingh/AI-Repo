@@ -12,12 +12,12 @@ def greet(state: GraphState) -> GraphState:
 
     return GraphState(message=state.message + " 👋")
 
-graph_builder = StateGraph(GraphState)
-graph_builder.add_node("greet", greet)
-graph_builder.add_edge(START, "greet")
-graph_builder.add_edge("greet", END)
+graph = StateGraph(GraphState)
+graph.add_node("greet", greet)
+graph.add_edge(START, "greet")
+graph.add_edge("greet", END)
 
-graph = graph_builder.compile()
+graph = graph.compile()
 
 
 if __name__ == "__main__":
